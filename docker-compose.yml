@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  proto:
+    build:
+      context: .
+    entrypoint: bash protoc.sh
+    volumes:
+      - ./proto:/proto
+      - ./client/lib/proto:/output/client
+      - ./server:/output/server
+  redis: 
+    image: "redis:7.0.2-alpine"
+    ports:
+      - "6379:6379"
